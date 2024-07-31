@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "carpet-extension",
+	"version": "${version}",
+	"name": "Ornithe Carpet Extension",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"You!"
+	],
+	"contact": {
+		"homepage": "https://example.com/",
+		"sources": "https://github.com/OrnitheMC/ornithe-template-mod"
+	},
+	"license": "LGPL-3.0-or-later",
+	"icon": "assets/carpet-extension/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"preLaunch": ["carpetextension.CarpetExtensionServer::loadExtension"]
+	},
+	"mixins": [
+		"carpet-extension.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.13.3",
+		"minecraft": "1.12.2"
+	}
+}
