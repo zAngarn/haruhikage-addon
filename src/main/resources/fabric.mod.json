@@ -8,8 +8,8 @@
 		"You!"
 	],
 	"contact": {
-		"homepage": "https://example.com/",
-		"sources": "https://github.com/OrnitheMC/ornithe-template-mod"
+		"homepage": "https://github.com/CrazyHPi/ornithe-carpet-extension-template",
+		"sources": "https://github.com/CrazyHPi/ornithe-carpet-extension-template"
 	},
 	"license": "LGPL-3.0-or-later",
 	"icon": "assets/carpet-extension/icon.png",
@@ -22,6 +22,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.13.3",
-		"minecraft": "1.12.2"
+		"minecraft": "1.12.2",
+		"carpet": ""
 	}
 }
