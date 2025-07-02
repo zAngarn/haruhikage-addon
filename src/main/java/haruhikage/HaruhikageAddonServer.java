@@ -2,7 +2,6 @@ package haruhikage;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import haruhikage.command.ChunkDebugCommand;
 import haruhikage.command.ChunkTrackCommand;
 import haruhikage.command.SearchCommand;
 import haruhikage.utils.HaruhikageAddonTranslations;

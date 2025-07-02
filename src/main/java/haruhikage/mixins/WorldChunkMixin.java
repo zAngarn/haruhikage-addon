@@ -3,7 +3,6 @@ package haruhikage.mixins;
 import carpet.CarpetServer;
 import carpet.utils.Messenger;
 import haruhikage.HaruhikageAddonSettings;
-import haruhikage.command.ChunkDebugCommand;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,10 +43,6 @@ public abstract class WorldChunkMixin {
     private void populationLoggerEnd(CallbackInfo ci) {
         if (HaruhikageAddonSettings.logChunkPopulation) {
             Messenger.print_server_message(CarpetServer.minecraftServer, String.format("Finished populating chunk %d %d!", cX, cZ));
-        }
-
-        if (ChunkDebugCommand.chunkDebugEnabled) {
-            ChunkDebugCommand.onChunkPopulated(cX, cZ, this.world, null);
         }
     }
 }
