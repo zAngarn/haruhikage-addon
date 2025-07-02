@@ -3,20 +3,15 @@ package haruhikage.mixins;
 import carpet.CarpetServer;
 import carpet.utils.Messenger;
 import haruhikage.HaruhikageAddonSettings;
-import haruhikage.command.ChunkDebugCommand;
-import haruhikage.command.ChunkLoadLoggingCommand;
-import net.minecraft.server.MinecraftServer;
+import haruhikage.command.ChunkTrackCommand;
 import net.minecraft.server.world.chunk.ServerChunkCache;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerChunkCache.class)
@@ -57,7 +52,7 @@ public abstract class ServerChunkCacheMixin {
 
         // Chunk Debug - Unloading Events
         if (HaruhikageAddonSettings.chunkTrackCommand) {
-            for(ChunkPos pos : ChunkLoadLoggingCommand.chunks) {
+            for(ChunkPos pos : ChunkTrackCommand.chunks) {
                 if(pos.x == unloadedChunk.chunkX && pos.z == unloadedChunk.chunkZ) {
                     HaruhikageAddonSettings.LOGGER.info("- Chunk {} {} has been unloaded", unloadedChunk.chunkX, unloadedChunk.chunkZ);
                     Messenger.print_server_message(CarpetServer.minecraftServer, "- Chunk " + unloadedChunk.chunkX + " " + unloadedChunk.chunkZ + " has been unloaded!");
@@ -70,7 +65,7 @@ public abstract class ServerChunkCacheMixin {
     @Inject(method = "loadChunk", at = @At("RETURN"))
     private void sniffLoadChunkEvents(int chunkX, int chunkZ, CallbackInfoReturnable<WorldChunk> cir) {
         if(HaruhikageAddonSettings.chunkTrackCommand) {
-            for(ChunkPos pos : ChunkLoadLoggingCommand.chunks) {
+            for(ChunkPos pos : ChunkTrackCommand.chunks) {
                 if(pos.x == chunkX && pos.z == chunkZ) {
                     HaruhikageAddonSettings.LOGGER.info("+ Chunk {} {} has been loaded!", chunkX, chunkZ);
                     Messenger.print_server_message(CarpetServer.minecraftServer, "+ Chunk " + chunkX + " " + chunkZ + " has been loaded!");
