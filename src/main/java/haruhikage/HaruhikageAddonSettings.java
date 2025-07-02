@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HaruhikageAddonSettings {
     public static final Logger LOGGER = LogManager.getLogger("haruhikage-addon");
-    public static final String fallingblock = "FALLINGBLOCK";
+    public static final String fallingblock = "Haruhikage";
 
     @Rule(
             desc = "Log async beacom beam times in server console.",
