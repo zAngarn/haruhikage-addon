@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HaruhikageAddonSettings {
     public static final Logger LOGGER = LogManager.getLogger("haruhikage-addon");
-    public static final String fallingblock = "FALLINGBLOCK";
+    public static final String fallingblock = "Haruhikage";
 
     @Rule(
             desc = "Log async beacom beam times in server console.",
@@ -42,6 +42,13 @@ public class HaruhikageAddonSettings {
             options = {"true", "false"}
     )
     public static boolean logChunkPopulation = false;
+
+    @Rule(
+            desc = "Enables and tracks loading events of chunks using the /chunkTrack command in chat. Serves as an alternative to chunk debug without the need of external tools",
+            categories = fallingblock,
+            options = {"true", "false"}
+    )
+    public static boolean chunkTrackCommand = false;
 
 
 }

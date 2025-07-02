@@ -16,7 +16,7 @@ import net.minecraft.world.chunk.WorldChunk;
 import java.lang.reflect.Field;
 
 public class SearchCommand extends CarpetAbstractCommand {
-    // example command
+
     protected World world;
 
     @Override
