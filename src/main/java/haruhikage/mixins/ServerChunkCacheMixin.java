@@ -22,9 +22,6 @@ public abstract class ServerChunkCacheMixin {
     @Unique
     private WorldChunk unloadedChunk;
 
-    @Unique
-    private World world;
-
     // Unload phase tracking
 
     @Inject(method = "tick()Z", at = @At("HEAD"))
@@ -75,22 +72,6 @@ public abstract class ServerChunkCacheMixin {
     private void sniffLoadChunkEvents(int chunkX, int chunkZ, CallbackInfoReturnable<WorldChunk> cir) {
         if (ChunkDebugCommand.chunkDebugEnabled) {
             ChunkDebugCommand.onChunkLoaded(chunkX, chunkZ, this.world, null);
-        }
-    }
-
-    // Chunk Debug - Generation events (Es seguro asumir que siempre que un chunk se genera se va a cargar, asi que usamos el mismo mundo para to')
-
-    @Inject(method = "getChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/chunk/ChunkGenerator;getChunk(II)Lnet/minecraft/world/chunk/WorldChunk;", shift = At.Shift.AFTER))
-    private void sniffGenerationChunkEvents(int chunkX, int chunkZ, CallbackInfoReturnable<WorldChunk> cir) {
-        if (ChunkDebugCommand.chunkDebugEnabled) {
-            ChunkDebugCommand.onChunkGenerated(chunkX, chunkZ, this.world, null);
-        }
-    }
-
-    @Inject(method = "unloadChunk", at = @At(value = "INVOKE", target = "Ljava/util/Set;add(Ljava/lang/Object;)Z", shift = At.Shift.AFTER))
-    private void sniffUnloadEvent(WorldChunk chunk, CallbackInfo ci) {
-        if (ChunkDebugCommand.chunkDebugEnabled) {
-            ChunkDebugCommand.onChunkUnloadScheduled(chunk.chunkX, chunk.chunkZ, this.world, null);
         }
     }
 }
