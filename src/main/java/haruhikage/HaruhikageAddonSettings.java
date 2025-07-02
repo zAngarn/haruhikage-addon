@@ -1,0 +1,47 @@
+package haruhikage;
+
+import carpet.api.settings.Rule;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class HaruhikageAddonSettings {
+    public static final Logger LOGGER = LogManager.getLogger("haruhikage-addon");
+    public static final String fallingblock = "FALLINGBLOCK";
+
+    @Rule(
+            desc = "Log async beacom beam times in server console.",
+            categories = fallingblock,
+            options = {"true", "false"}
+    )
+    public static boolean logAsyncTimes = false; // inutil
+
+    @Rule(
+            desc = "Logs 'Chunk Unload' phase and 'Player' phase in server console. Unload chunk unload will be displayed in chat",
+            categories = fallingblock,
+            options = {"true", "false"}
+    )
+    public static boolean logCertainTickPhases = false;
+
+    @Rule(
+            desc = "Unload Chunk X coordinate for the `logUnloadChunkPhase` logger",
+            categories = fallingblock,
+            options = {"1", "2", "3"}
+    )
+    public static int unloadChunkX = 1;
+
+    @Rule(
+            desc = "Unload Chunk Z coordinate for the `logUnloadChunkPhase` logger",
+            categories = fallingblock,
+            options = {"1", "2", "3"}
+    )
+    public static int unloadChunkZ = 1;
+
+    @Rule(
+            desc = "Logs population of certain chunks",
+            categories = fallingblock,
+            options = {"true", "false"}
+    )
+    public static boolean logChunkPopulation = false;
+
+
+}

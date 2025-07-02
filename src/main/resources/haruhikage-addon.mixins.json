@@ -1,0 +1,22 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "haruhikage.mixins",
+	"refmap": "carpetextension.refmap.json",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+	],
+	"client": [
+		"InitMixin",
+		"BeaconBlockMixin",
+		"ServerChunkCacheMixin",
+		"WorldChunkMixin",
+		"ServerChunkCacheAccessor",
+		"MinecraftServerMixin"
+	],
+	"server": [
+    ],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

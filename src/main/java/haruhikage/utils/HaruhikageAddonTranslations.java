@@ -1,4 +1,4 @@
-package carpetextension.utils;
+package haruhikage.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,9 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
 
-public class CarpetExtensionTranslations {
+public class HaruhikageAddonTranslations {
     public static Map<String, String> getTranslationFromResourcePath(String lang) {
-        InputStream langFile = CarpetExtensionTranslations.class.getClassLoader().getResourceAsStream(String.format("assets/carpet-extension/lang/%s.json", lang));
+        InputStream langFile = HaruhikageAddonTranslations.class.getClassLoader().getResourceAsStream(String.format("assets/haruhikage-addon/lang/%s.json", lang));
         if (langFile == null) {
             // we don't have that language
             return Collections.emptyMap();

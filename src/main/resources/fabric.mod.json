@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "carpet-extension",
+	"id": "haruhikage-addon",
 	"version": "${version}",
-	"name": "Ornithe Carpet Extension",
+	"name": "Haruhikage Ornithe Carpet Extension",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"You!"
@@ -15,10 +15,10 @@
 	"icon": "assets/carpet-extension/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"preLaunch": ["carpetextension.CarpetExtensionServer::loadExtension"]
+		"preLaunch": ["haruhikage.HaruhikageAddonServer::loadExtension"]
 	},
 	"mixins": [
-		"carpet-extension.mixins.json"
+		"haruhikage-addon.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.13.3",
