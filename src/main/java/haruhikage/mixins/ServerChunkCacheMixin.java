@@ -4,7 +4,10 @@ import carpet.CarpetServer;
 import carpet.utils.Messenger;
 import haruhikage.HaruhikageAddonSettings;
 import haruhikage.command.ChunkDebugCommand;
+import haruhikage.command.ChunkLoadLoggingCommand;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.chunk.ServerChunkCache;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
@@ -53,25 +56,26 @@ public abstract class ServerChunkCacheMixin {
         }
 
         // Chunk Debug - Unloading Events
-        /*if (ChunkDebugCommand.chunkDebugEnabled) {
-            ChunkDebugCommand.onChunkUnloaded(unloadedChunk.chunkX, unloadedChunk.chunkZ, this.world, null); //TODO
-        }*/
+        if (HaruhikageAddonSettings.chunkTrackCommand) {
+            for(ChunkPos pos : ChunkLoadLoggingCommand.chunks) {
+                if(pos.x == unloadedChunk.chunkX && pos.z == unloadedChunk.chunkZ) {
+                    HaruhikageAddonSettings.LOGGER.info("- Chunk {} {} has been unloaded", unloadedChunk.chunkX, unloadedChunk.chunkZ);
+                    Messenger.print_server_message(CarpetServer.minecraftServer, "- Chunk " + unloadedChunk.chunkX + " " + unloadedChunk.chunkZ + " has been unloaded!");
+                }
+            }
+        }
     }
 
-    // Chunk Debug - World
-
-    @ModifyArg(method = "loadChunk(II)Lnet/minecraft/world/chunk/WorldChunk;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/chunk/storage/ChunkStorage;loadChunk(Lnet/minecraft/world/World;II)Lnet/minecraft/world/chunk/WorldChunk;"), index = 0)
-    private World loadedChunkWorld(World world) {
-        this.world = world;
-        return world;
-    }
-
-    // Chunk Debug - Loading events
-
+    // Chunk Load Logging - Loading events
     @Inject(method = "loadChunk", at = @At("RETURN"))
     private void sniffLoadChunkEvents(int chunkX, int chunkZ, CallbackInfoReturnable<WorldChunk> cir) {
-        if (ChunkDebugCommand.chunkDebugEnabled) {
-            ChunkDebugCommand.onChunkLoaded(chunkX, chunkZ, this.world, null);
+        if(HaruhikageAddonSettings.chunkTrackCommand) {
+            for(ChunkPos pos : ChunkLoadLoggingCommand.chunks) {
+                if(pos.x == chunkX && pos.z == chunkZ) {
+                    HaruhikageAddonSettings.LOGGER.info("+ Chunk {} {} has been loaded!", chunkX, chunkZ);
+                    Messenger.print_server_message(CarpetServer.minecraftServer, "+ Chunk " + chunkX + " " + chunkZ + " has been loaded!");
+                }
+            }
         }
     }
 }
