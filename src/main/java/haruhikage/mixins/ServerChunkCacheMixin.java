@@ -42,6 +42,18 @@ public abstract class ServerChunkCacheMixin {
         if (HaruhikageAddonSettings.logCertainTickPhases && this.unloadedChunk.chunkX == HaruhikageAddonSettings.unloadChunkX && this.unloadedChunk.chunkZ == HaruhikageAddonSettings.unloadChunkZ) {
             Messenger.print_server_message(CarpetServer.minecraftServer, String.format("Unload Chunk %d %d has been unloaded. Global timer: %d", this.unloadedChunk.chunkX, this.unloadedChunk.chunkZ, System.nanoTime()));
         }
+
+        // Chunk Debug - Unloading Events
+        if (HaruhikageAddonSettings.chunkTrackCommand && !ChunkTrackCommand.chunks.isEmpty()) {
+            for(ChunkPos pos : ChunkTrackCommand.chunks) {
+                if(this.unloadedChunk != null) {
+                    if (pos.x == unloadedChunk.chunkX && pos.z == unloadedChunk.chunkZ) {
+                        HaruhikageAddonSettings.LOGGER.info("- Chunk {} {} has been unloaded", unloadedChunk.chunkX, unloadedChunk.chunkZ);
+                        Messenger.print_server_message(CarpetServer.minecraftServer, "- Chunk " + unloadedChunk.chunkX + " " + unloadedChunk.chunkZ + " has been unloaded!");
+                    }
+                }
+            }
+        }
     }
 
     @Inject(method = "tick()Z", at = @At("TAIL"))
@@ -49,22 +61,12 @@ public abstract class ServerChunkCacheMixin {
         if (HaruhikageAddonSettings.logCertainTickPhases) {
             HaruhikageAddonSettings.LOGGER.info("Unload phase exiting. Global timer: {}", System.nanoTime());
         }
-
-        // Chunk Debug - Unloading Events
-        if (HaruhikageAddonSettings.chunkTrackCommand) {
-            for(ChunkPos pos : ChunkTrackCommand.chunks) {
-                if(pos.x == unloadedChunk.chunkX && pos.z == unloadedChunk.chunkZ) {
-                    HaruhikageAddonSettings.LOGGER.info("- Chunk {} {} has been unloaded", unloadedChunk.chunkX, unloadedChunk.chunkZ);
-                    Messenger.print_server_message(CarpetServer.minecraftServer, "- Chunk " + unloadedChunk.chunkX + " " + unloadedChunk.chunkZ + " has been unloaded!");
-                }
-            }
-        }
     }
 
     // Chunk Load Logging - Loading events
     @Inject(method = "loadChunk", at = @At("RETURN"))
     private void sniffLoadChunkEvents(int chunkX, int chunkZ, CallbackInfoReturnable<WorldChunk> cir) {
-        if(HaruhikageAddonSettings.chunkTrackCommand) {
+        if(HaruhikageAddonSettings.chunkTrackCommand && !ChunkTrackCommand.chunks.isEmpty()) {
             for(ChunkPos pos : ChunkTrackCommand.chunks) {
                 if(pos.x == chunkX && pos.z == chunkZ) {
                     HaruhikageAddonSettings.LOGGER.info("+ Chunk {} {} has been loaded!", chunkX, chunkZ);

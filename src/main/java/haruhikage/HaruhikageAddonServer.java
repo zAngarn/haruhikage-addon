@@ -3,6 +3,7 @@ package haruhikage;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import haruhikage.command.ChunkDebugCommand;
+import haruhikage.command.ChunkTrackCommand;
 import haruhikage.command.SearchCommand;
 import haruhikage.utils.HaruhikageAddonTranslations;
 import net.minecraft.server.command.handler.CommandRegistry;
@@ -30,7 +31,7 @@ public class HaruhikageAddonServer implements CarpetExtension {
     public void registerCommands(CommandRegistry registry) {
         // register commands here
         registry.register(new SearchCommand());
-        registry.register(new ChunkDebugCommand());
+        registry.register(new ChunkTrackCommand());
     }
 
     @Override
