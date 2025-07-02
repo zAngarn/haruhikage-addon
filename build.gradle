@@ -23,8 +23,6 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings ploceus.featherMappings(project.feather_build)
 
-	testImplementation 'com.google.code.findbugs:jsr305:3.0.2'
-
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	// carpet core
 	modImplementation "com.github.CrazyHPi:ornithe-carpet:${carpet_core_version}"
