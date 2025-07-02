@@ -8,11 +8,11 @@
 		"You!"
 	],
 	"contact": {
-		"homepage": "https://github.com/CrazyHPi/ornithe-carpet-extension-template",
-		"sources": "https://github.com/CrazyHPi/ornithe-carpet-extension-template"
+		"homepage": "https://github.com/zAngarn/haruhikage-addon",
+		"sources": "https://github.com/zAngarn/haruhikage-addon"
 	},
 	"license": "LGPL-3.0-or-later",
-	"icon": "assets/carpet-extension/icon.png",
+	"icon": "assets/haruhikage-addon/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"preLaunch": ["haruhikage.HaruhikageAddonServer::loadExtension"]
