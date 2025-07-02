@@ -21,7 +21,6 @@ public abstract class ServerChunkCacheMixin {
     private WorldChunk unloadedChunk;
 
     // Unload phase tracking
-
     @Inject(method = "tick()Z", at = @At("HEAD"))
     private void startUnloadTimer(CallbackInfoReturnable<Boolean> cir) {
 
@@ -43,7 +42,7 @@ public abstract class ServerChunkCacheMixin {
             Messenger.print_server_message(CarpetServer.minecraftServer, String.format("Unload Chunk %d %d has been unloaded. Global timer: %d", this.unloadedChunk.chunkX, this.unloadedChunk.chunkZ, System.nanoTime()));
         }
 
-        // Chunk Debug - Unloading Events
+        // Chunk Tracking - Unloading Events
         if (HaruhikageAddonSettings.chunkTrackCommand && !ChunkTrackCommand.chunks.isEmpty()) {
             for(ChunkPos pos : ChunkTrackCommand.chunks) {
                 if(this.unloadedChunk != null) {
@@ -63,7 +62,7 @@ public abstract class ServerChunkCacheMixin {
         }
     }
 
-    // Chunk Load Logging - Loading events
+    // Chunk Tracking - Loading events
     @Inject(method = "loadChunk", at = @At("RETURN"))
     private void sniffLoadChunkEvents(int chunkX, int chunkZ, CallbackInfoReturnable<WorldChunk> cir) {
         if(HaruhikageAddonSettings.chunkTrackCommand && !ChunkTrackCommand.chunks.isEmpty()) {
