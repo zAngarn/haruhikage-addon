@@ -85,6 +85,6 @@ publishing {
 
 loom {
 	mixin {
-		defaultRefmapName = "carpetextension.refmap.json"
+		defaultRefmapName = "haruhikage-addon.refmap.json"
 	}
 }
