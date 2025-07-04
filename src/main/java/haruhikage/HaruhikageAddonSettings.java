@@ -10,42 +10,42 @@ public class HaruhikageAddonSettings {
 
     @Rule(
             desc = "Log async beacom beam times in server console.",
-            categories = fallingblock,
+            categories = {fallingblock},
             options = {"true", "false"}
     )
     public static boolean logAsyncTimes = false; // inutil
 
     @Rule(
             desc = "Logs 'Chunk Unload' phase and 'Player' phase in server console. Unload chunk unload will be displayed in chat",
-            categories = fallingblock,
+            categories = {fallingblock},
             options = {"true", "false"}
     )
     public static boolean logCertainTickPhases = false;
 
     @Rule(
             desc = "Unload Chunk X coordinate for the `logUnloadChunkPhase` logger",
-            categories = fallingblock,
+            categories = {fallingblock},
             options = {"1", "2", "3"}
     )
     public static int unloadChunkX = 1;
 
     @Rule(
             desc = "Unload Chunk Z coordinate for the `logUnloadChunkPhase` logger",
-            categories = fallingblock,
+            categories = {fallingblock},
             options = {"1", "2", "3"}
     )
     public static int unloadChunkZ = 1;
 
     @Rule(
             desc = "Logs population of certain chunks",
-            categories = fallingblock,
+            categories = {fallingblock},
             options = {"true", "false"}
     )
     public static boolean logChunkPopulation = false;
 
     @Rule(
             desc = "Enables and tracks loading events of chunks using the /chunkTrack command in chat. Serves as an alternative to chunk debug without the need of external tools",
-            categories = fallingblock,
+            categories = {fallingblock},
             options = {"true", "false"}
     )
     public static boolean chunkTrackCommand = false;
