@@ -7,3 +7,4 @@ An addon for the Ornithe Carpet project. Contains features mainly for singleplay
 - Async threads start/end logging
 - Chunk population logging
 - `chunkTrack` command (I couln't get chunk debug to work so this is my workaround lmao)
+- `search` command to check clustering (copied `loadedChunks search`)
