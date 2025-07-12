@@ -2,6 +2,9 @@
 
 An addon for the Ornithe Carpet project. Contains features mainly for singleplayer falling block development, mostly ported from `carpetmod112`
 
+## Depends on
+Who would have guessed, [ornithe-carpet](https://github.com/CrazyHPi/ornithe-carpet) and fabric loader >= 0.13.3
+
 ## Main Features
 - Player phase and Unload phase logging
 - Async threads start/end logging
