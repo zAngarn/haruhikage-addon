@@ -5,6 +5,8 @@ An addon for the Ornithe Carpet project. Contains features mainly for singleplay
 ## Depends on
 Who would have guessed, [ornithe-carpet](https://github.com/CrazyHPi/ornithe-carpet) and fabric loader >= 0.13.3
 
+Download ornithe [here](https://ornithemc.net/download/)
+
 ## Main Features
 - Player phase and Unload phase logging
 - Async threads start/end logging
