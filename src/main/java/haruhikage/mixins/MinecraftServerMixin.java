@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
 
-    @Inject(method = "tickWorlds()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Utils;run(Ljava/util/concurrent/FutureTask;Lorg/apache/logging/log4j/Logger;)Ljava/lang/Object;", ordinal = 0))
+    @Inject(method = "tickWorlds()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;push(Ljava/lang/String;)V", ordinal = 0, shift = At.Shift.AFTER))
     private void populationLoggeStart(CallbackInfo ci) {
         if(HaruhikageAddonSettings.logCertainTickPhases) {
             HaruhikageAddonSettings.LOGGER.info("Player phase has just started. Global Timer: {}", System.nanoTime());
