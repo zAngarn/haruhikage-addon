@@ -4,7 +4,6 @@ import carpet.CarpetServer;
 import carpet.utils.Messenger;
 import haruhikage.HaruhikageAddonSettings;
 import org.objectweb.asm.Opcodes;
-import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkGenerator;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
